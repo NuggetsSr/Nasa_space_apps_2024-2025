@@ -1,21 +1,34 @@
-import csv
-# import pandas as pd
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
-# Open and read a CSV file
+# Create a 3D figure
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
 
-file = open('habitable exoplanets list.txt', 'r')
-content = file.read()
+# Plot the Sun at the origin (0,0,0)
+ax.scatter(0, 0, 0, color='yellow', s=200, label='Sun')
+
+# Exoplanet positions relative to the Sun (in arbitrary units, e.g., light-years or AU)
+# Format: (x, y, z)
+exoplanets = {
+    'Planet A': (4, 3, 5),
+    'Planet B': (7, -2, 8),
+    'Planet C': (-6, 1, -4),
+    'Planet D': (2, -5, 2),
+}
+
+# Plot each exoplanet
+for planet, (x, y, z) in exoplanets.items():
+    ax.scatter(x, y, z, label=planet)
 
 
-with open('PSCompPars_2024.10.05_07.42.51.csv', mode='r') as f:
-    csv_reader = csv.reader(f)
-    # Iterate over rows in the CSV
-    for row in csv_reader:
-        if row[0] in content:
-            print(row[0])
-    
 
+# Set labels and title
+ax.set_xlabel('X axis (Distance)')
+ax.set_ylabel('Y axis (Distance)')
+ax.set_zlabel('Z axis (Distance)')
+ax.set_title('Exoplanets Relative to the Sun')
 
-# df = pd.read_csv('PS_2024.10.05_06.28.35.csv')
-
-
+# Display legend and plot
+ax.legend()
+plt.show()
