@@ -17,7 +17,7 @@ def fetch_exoplanet_data():
 
 app.layout = html.Div(style={'display': 'flex', 'flexDirection': 'column', 'alignItems': 'center', 'width': '100%', 'height': '100vh'}, children=[
     html.H1('Exoplanets from the perspective of the HWO'),
-    dcc.Graph(id='exoplanet-globe', style={'width': '100%', 'height': '10000000pt'}),  # Adjusted width and height
+    dcc.Graph(id='exoplanet-globe', style={'width': '100%', 'height': '10000000000pt'}),  # Adjusted width and height
     dash_table.DataTable(
         id='exoplanet-table',
         columns=[
@@ -38,9 +38,11 @@ app.layout = html.Div(style={'display': 'flex', 'flexDirection': 'column', 'alig
     Output('exoplanet-table', 'data'),  # Output for the DataTable
     [Input('interval-component', 'n_intervals')]
 )
+def display_hover_data(hoverData):
+    return json.dumps(hoverData, indent = 2)
+
 def update_figure(n):
     df = fetch_exoplanet_data()
-
     # Convert galactic coordinates (longitudes and latitudes) to 3D Cartesian coordinates
     df['x'] = df['Distance'] * np.cos(np.radians(df['Latitude'])) * np.cos(np.radians(df['Longitude']))
     df['y'] = df['Distance'] * np.cos(np.radians(df['Latitude'])) * np.sin(np.radians(df['Longitude']))
@@ -64,11 +66,13 @@ def update_figure(n):
 
     # Adjust layout to simulate viewing exoplanets in 3D space
     fig.update_layout(
+        clickmode='event+select',
         paper_bgcolor = 'black',
+        font_color = "white",
         scene=dict(
-            xaxis=dict(visible=False),
-            yaxis=dict(visible=False),
-            zaxis=dict(visible=False),
+            xaxis=dict(visible=True, gridcolor = 'white', range = [-1000,1000], backgroundcolor = 'black'),
+            yaxis=dict(visible=True, range = [-1000,1000], gridcolor = 'white', backgroundcolor = 'black'),
+            zaxis=dict(visible=True, range = [-1000,1000], gridcolor = 'white',backgroundcolor = 'black'),
             camera=dict(
                 eye=dict(x=0.00001581, y=0.00001581, z=0.00001581)  # Set camera to give a good view of the 3D space
             ),
