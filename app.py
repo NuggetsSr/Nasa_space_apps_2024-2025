@@ -15,12 +15,14 @@ def fetch_exoplanet_data():
     # print(df)
     return df
 
-app.layout = html.Div([
+app.layout = html.Div(style={'display': 'flex', 'flexDirection': 'column', 'alignItems': 'center', 'width': '100%', 'height': '100vh'}, children=[
     html.H1('Exoplanets from the perspective of the HWO'),
-    dcc.Graph(id='exoplanet-globe'),
+    dcc.Graph(id='exoplanet-globe', style={'width': '100%', 'height': '10000000pt'}),  # Adjusted width and height
     dash_table.DataTable(
         id='exoplanet-table',
-        columns=[{"name": col, "id": col} for col in ['Exoplanet', 'Galactic Longitude', 'Galactic Latitude', 'ESI', 'Distance (ly)', 'Mass (Compared to Jupiter)']],
+        columns=[
+            {"name": col, "id": col} for col in ['Exoplanet', 'Galactic Longitude', 'Galactic Latitude', 'ESI', 'Distance (ly)', 'Mass (Compared to Jupiter)']
+        ],
         page_size=10,  # Number of rows to display per page
         style_table={'overflowX': 'auto'},
     ),
@@ -51,7 +53,7 @@ def update_figure(n):
         z=df['z'],
         mode='markers',
         marker=dict(
-            size= df['Radius compared to Jupiter']*100, # change 188 to find max
+            size= df['Magnitude'], # change 188 to find max
             color=df['ESI'],  # Use ESI to represent color/size
             colorscale='Viridis',
             opacity=0.8
@@ -62,6 +64,7 @@ def update_figure(n):
 
     # Adjust layout to simulate viewing exoplanets in 3D space
     fig.update_layout(
+        paper_bgcolor = 'black',
         scene=dict(
             xaxis=dict(visible=False),
             yaxis=dict(visible=False),
