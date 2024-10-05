@@ -11,7 +11,7 @@ app = dash.Dash(__name__)
 
 # Exoplanet data including galactic coordinates and other characteristics
 def fetch_exoplanet_data():
-    df = pd.read_csv('Exoplanets Info - Exoplanet_Data_Sorted_by_ESI (1).csv')
+    df = pd.read_csv('Exoplanets Info - Exoplanet_Data_Sorted_by_ESI (2).csv')
     # print(df)
     return df
 
@@ -51,7 +51,7 @@ def update_figure(n):
         z=df['z'],
         mode='markers',
         marker=dict(
-            size= df['Magnitude']/2, # change 188 to find max
+            size= df['Radius compared to Jupiter']*100, # change 188 to find max
             color=df['ESI'],  # Use ESI to represent color/size
             colorscale='Viridis',
             opacity=0.8
