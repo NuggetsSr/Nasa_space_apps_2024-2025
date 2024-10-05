@@ -30,7 +30,7 @@ def fetch_exoplanet_data():
     return df
 
 app.layout = html.Div([
-    html.H1('Exoplanets from the perspective of the HWO'),
+    html.H1('Exoplanets in the Night Sky'),
     dcc.Graph(id='exoplanet-globe'),
     dash_table.DataTable(
         id='exoplanet-table',
