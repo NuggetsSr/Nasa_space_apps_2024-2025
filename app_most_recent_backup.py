@@ -49,7 +49,7 @@ def update_figure(n):
     df['z'] = df['Distance'] * np.sin(np.radians(df['Latitude']))
 
     # Create a 3D scatter plot
-    fig = go.Figure(data=[go.Scatter3d(
+    fig = go.Figure(data=[go.Scatter_polar(
         x=df['x'],
         y=df['y'],
         z=df['z'],
