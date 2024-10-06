@@ -9,3 +9,4 @@ requests
 pd
 pandas
 numpy
+json
