@@ -8,7 +8,7 @@ from sklearn.metrics import accuracy_score
 import joblib
 
 # Step 1: Load your dataset (replace with the correct dataset path)
-df = pd.read_csv('Exoplanets Info - Exoplanet_Data_Sorted_by_ESI.csv')
+df = pd.read_csv('Exoplanets Info - Exoplanet_Data_Sorted_by_ESI_forAI.csv')
 
 # Step 2: Define the logic to populate the 'Explore' column
 df['Explore'] = df['ESI'].apply(lambda x: 1 if x >= 0.9 else 0)
