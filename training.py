@@ -7,7 +7,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Load your dataset
-df = pd.read_csv('Exoplanets Info - Exoplanet_Data_Sorted_by_ESI.csv')  # Replace with your dataset path
+df = pd.read_csv('Exoplanets Info - Exoplanet_Data_Sorted_by_ESI_forAI.csv')  # Replace with your dataset path
 
 df= df.fillna(0)
 
