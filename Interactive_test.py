@@ -6,7 +6,7 @@ from sklearn.metrics import accuracy_score
 import joblib
 
 # Step 1: Load your dataset (replace with the correct dataset path)
-df = pd.read_csv('Exoplanets Info - Exoplanet_Data_Sorted_by_ESI.csv')
+df = pd.read_csv('Exoplanets Info - Exoplanet_Data_Sorted_by_ESI_forAI.csv')
 
 # Step 2: Define the logic to populate the 'Explore' column
 # Example rule: if ESI >= 0.9, the exoplanet is a good candidate for exploration
