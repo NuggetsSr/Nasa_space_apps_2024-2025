@@ -89,7 +89,8 @@ app.layout = html.Div(style={'display': 'flex', 'flexDirection': 'column', 'alig
             page_size=10,
             style_table={'overflowX': 'auto'},
         ),
-        dcc.Interval(id='interval-component', interval=240*1000, n_intervals=0)
+        dcc.Interval(id='interval-component', interval=240*1000, n_intervals=0),
+        
     ]
 )
 
